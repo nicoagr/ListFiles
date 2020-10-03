@@ -1,8 +1,8 @@
 # ListFiles
 Programa sencillo para crear una lista de todos los archivos en un directorio y obtenerla en formato copia-pega
-## Capturas de Pantalla
-Próximamente...
+## Captura de Pantalla
+![f](https://i.imgur.com/dAPaHkm.png)
 ## Descarga
-Próximamente...
+Windows 7 y Windows 10: https://github.com/nicoagr/ListFiles/releases/download/v1.0/ListFiles.exe
 ### Legal
 *Este proyecto NO tiene una licencia. Para obtener más información sobre licencias de código abierto, haz click [aquí](https://opensource.org/faq). Si quieres saber qué significa que este proyecto no tenga una licencia, haz click [aquí](https://choosealicense.com/no-permission/)*
