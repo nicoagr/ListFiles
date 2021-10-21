@@ -58,11 +58,9 @@ namespace ListFiles
                     }
                 }
                 catch (Exception ex) { MessageBox.Show("Error! + " + ex.ToString(), "ListFiles - Error"); }
-                
                 this.Cursor = Cursors.Default;
                 linkLabel1.Visible = true;
                 linkLabel1.Text = "Copiar";
-
             }
         }
 
@@ -70,9 +68,7 @@ namespace ListFiles
         {
             string acopiar = string.Empty;
             foreach (object liItem in listBox1.Items)
-                acopiar += Environment.NewLine + liItem.ToString();
-
-
+            acopiar += Environment.NewLine + liItem.ToString();
             Clipboard.SetText(acopiar);
             linkLabel1.Text = "Copiado!";
         }
