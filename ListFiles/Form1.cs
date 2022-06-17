@@ -14,6 +14,8 @@ namespace ListFiles
 {
     public partial class Form1 : Form
     {
+        string folder;
+
         internal string currentDirectory = AppDomain.CurrentDomain.BaseDirectory;
         public Form1()
         {
@@ -40,7 +42,7 @@ namespace ListFiles
             if (dlg.ShowDialog() == CommonFileDialogResult.Ok)
             {
                 this.Cursor = Cursors.WaitCursor;
-                string folder = dlg.FileName;
+                folder = dlg.FileName;
                 listBox1.Items.Clear();
                 listBox1.Enabled = true;
                 // Hacer la búsqueda
@@ -52,8 +54,11 @@ namespace ListFiles
                         string input = file;
                         string output = input.Split('\\').Last();
                         // Quitar extensión del nombre de archivo
-                        string extension = System.IO.Path.GetExtension(output);
-                        output = output.Replace(extension, string.Empty);
+                        if (!checkBox1.Checked)
+                        {
+                            string extension = System.IO.Path.GetExtension(output);
+                            output = output.Replace(extension, string.Empty);
+                        }
                         listBox1.Items.Add(output);
                     }
                 }
@@ -71,6 +76,36 @@ namespace ListFiles
             acopiar += Environment.NewLine + liItem.ToString();
             Clipboard.SetText(acopiar);
             linkLabel1.Text = "Copiado!";
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (listBox1.Items.Count != 0)
+            {
+                listBox1.Items.Clear();
+                listBox1.Enabled = true;
+                // Hacer la búsqueda (sí, repito código, pero la aplicación es demasiado pequeña para que importe)
+                try
+                {
+                    foreach (string file in Directory.EnumerateFiles(folder, "*.*", SearchOption.AllDirectories))
+                    {
+                        // Quitar todo excepto del nombre de archivo
+                        string input = file;
+                        string output = input.Split('\\').Last();
+                        // Quitar extensión del nombre de archivo
+                        if (!checkBox1.Checked)
+                        {
+                            string extension = System.IO.Path.GetExtension(output);
+                            output = output.Replace(extension, string.Empty);
+                        }
+                        listBox1.Items.Add(output);
+                    }
+                }
+                catch (Exception ex) { MessageBox.Show("Error! + " + ex.ToString(), "ListFiles - Error"); }
+                this.Cursor = Cursors.Default;
+                linkLabel1.Visible = true;
+                linkLabel1.Text = "Copiar";
+            }
         }
     }
 }
