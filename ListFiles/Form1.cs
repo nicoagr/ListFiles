@@ -62,7 +62,9 @@ namespace ListFiles
                         listBox1.Items.Add(output);
                     }
                 }
-                catch (Exception ex) { MessageBox.Show("Error! + " + ex.ToString(), "ListFiles - Error"); }
+                catch (Exception ex) {
+                    // Si hay algun error en algun nombre de archivo, lo ignoramos y ya.
+                }
                 this.Cursor = Cursors.Default;
                 linkLabel1.Visible = true;
                 linkLabel1.Text = "Copiar";
@@ -101,7 +103,10 @@ namespace ListFiles
                         listBox1.Items.Add(output);
                     }
                 }
-                catch (Exception ex) { MessageBox.Show("Error! + " + ex.ToString(), "ListFiles - Error"); }
+                catch (Exception ex)
+                {
+                    // Si hay algun error en algun nombre de archivo, lo ignoramos y ya.
+                }
                 this.Cursor = Cursors.Default;
                 linkLabel1.Visible = true;
                 linkLabel1.Text = "Copiar";
